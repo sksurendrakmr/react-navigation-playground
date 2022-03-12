@@ -8,7 +8,7 @@ import {
 import {NavigationContainer, useNavigation} from '@react-navigation/native';
 
 type RootParamList = {
-  TweetDetails: undefined;
+  TweetDetails: {id: number};
 };
 type Props = NativeStackScreenProps<RootParamList, 'TweetDetails'>;
 
@@ -20,20 +20,46 @@ const Link = () => {
   );
 };
 
+/**
+ * passing a parameter to a target screen
+ * In navigate() as optional 2nd argument, we pass an object.
+ * In this object, we can pass one or more key value pairs.
+ * In our case, either we can pass id of the tweet or the entire tweet object.
+ *
+ */
 const Tweets = ({navigation}: Props) => (
   <Screen>
     <Text>Tweets</Text>
     <Button
       title="View Tweet"
-      onPress={() => navigation.navigate('TweetDetails')}
+      onPress={() => navigation.navigate('TweetDetails', {id: 1})}
     />
     <Link />
   </Screen>
 );
 
-const TweetDetails = () => (
+/**
+ * since we pass params to this screen from Tweet component.
+ * we have one other special prop called 'route'.
+ * React navigation automatically inject this prop to all our Screen(<Stack.Screen />) component.
+ *
+ * For child component, we will not have access to this route props.
+ * There we can make use of useRoute hooks.
+ *
+ * route.params will return same object that we pass from other component to
+ * this.
+ */
+
+type TweetDetailsParamList = {
+  TweetDetails: {id: number};
+};
+type TweetDetailsProps = NativeStackScreenProps<
+  TweetDetailsParamList,
+  'TweetDetails'
+>;
+const TweetDetails = ({route}: TweetDetailsProps) => (
   <Screen>
-    <Text>Tweet Details</Text>
+    <Text style={{color: 'black'}}>Tweet Details: {route.params.id}</Text>
   </Screen>
 );
 
