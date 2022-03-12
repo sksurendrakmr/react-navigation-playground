@@ -11,6 +11,8 @@ import {
   useNavigation,
 } from '@react-navigation/native';
 
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+
 type RootParamList = {
   TweetDetails: {id: number};
 };
@@ -38,6 +40,12 @@ const Tweets = ({navigation}: Props) => (
       title="View Tweet"
       onPress={() => navigation.navigate('TweetDetails', {id: 1})}
     />
+  </Screen>
+);
+
+const Account = () => (
+  <Screen>
+    <Text>Account</Text>
   </Screen>
 );
 
@@ -118,10 +126,26 @@ const StackNavigator = () => (
     />
   </Stack.Navigator>
 );
+
+/**
+ * Bottom Tab Implementation
+ * createBottomTabNavigator() return an object which has two properties.
+ * Navigator and Screen which are react components.
+ *
+ * Each Screen component will represent a tab in our app.
+ */
+const Tab = createBottomTabNavigator();
+
+const TabNavigator = () => (
+  <Tab.Navigator>
+    <Tab.Screen name="Feed" component={Tweets} />
+    <Tab.Screen name="Account" component={Account} />
+  </Tab.Navigator>
+);
 export default function App() {
   return (
     <NavigationContainer>
-      <StackNavigator />
+      <TabNavigator />
     </NavigationContainer>
   );
 }
