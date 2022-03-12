@@ -12,6 +12,7 @@ import {
 } from '@react-navigation/native';
 
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 type RootParamList = {
   TweetDetails: {id: number};
@@ -133,12 +134,31 @@ const StackNavigator = () => (
  * Navigator and Screen which are react components.
  *
  * Each Screen component will represent a tab in our app.
+ *
+ * The Navigator component has prop called screenOptions
+ *
+ * React navigation will tell us what color we should set based on color we defined at TabNavigator.
  */
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => (
-  <Tab.Navigator>
-    <Tab.Screen name="Feed" component={Tweets} />
+  <Tab.Navigator
+    screenOptions={{
+      tabBarActiveBackgroundColor: 'tomato',
+      tabBarActiveTintColor: 'white',
+      tabBarInactiveBackgroundColor: '#eee',
+      tabBarInactiveTintColor: 'black',
+    }}>
+    <Tab.Screen
+      name="Feed"
+      component={Tweets}
+      options={{
+        tabBarIcon: ({size, color}) => (
+          <MaterialCommunityIcons name="home" size={size} color={color} />
+        ),
+        tabBarLabel: 'Home',
+      }}
+    />
     <Tab.Screen name="Account" component={Account} />
   </Tab.Navigator>
 );
