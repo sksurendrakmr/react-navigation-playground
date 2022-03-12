@@ -44,3 +44,15 @@ In option props, we can either set it to an object or an function that return an
 
 and react navigation automatically inject the route paramater as an argument in option 
 function.
+
+=============================================
+Customizing Headers
+===========================================
+headerStyle -> style the header. Take css
+headerTintColor -> change the title text color 
+headerShown -> boolean (to appear or disappear the header)
+
+If we make this changes inside options object, then it will 
+only applied to screen where options props are defined.
+
+To apply them globally, we need to make changes in Navigator.
