@@ -56,3 +56,7 @@ If we make this changes inside options object, then it will
 only applied to screen where options props are defined.
 
 To apply them globally, we need to make changes in Navigator.
+we will define screenOptions which is an object which support same
+properties as inside options to customize the header globally.
+
+If we want, we can override the styles for specific screens.

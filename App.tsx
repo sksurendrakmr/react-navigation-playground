@@ -102,15 +102,18 @@ type NativeStackNavigatorProps = {
 const Stack = createNativeStackNavigator<NativeStackNavigatorProps>();
 
 const StackNavigator = () => (
-  <Stack.Navigator initialRouteName="Tweets">
+  <Stack.Navigator
+    initialRouteName="Tweets"
+    screenOptions={{
+      headerStyle: {backgroundColor: 'dodgerblue'},
+      headerTintColor: 'white',
+    }}>
     <Stack.Screen name="Tweets" component={Tweets} />
     <Stack.Screen
       name="TweetDetails"
       component={TweetDetails}
       options={{
         headerStyle: {backgroundColor: 'tomato'},
-        headerTintColor: 'white',
-        headerShown: false,
       }}
     />
   </Stack.Navigator>
