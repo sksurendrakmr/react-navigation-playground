@@ -2,6 +2,9 @@ Installation
 ===================
 step 1 : npm install @react-navigation/native
 step 2 : npm install react-native-screens react-native-safe-area-context
+
+To use Stack Navigator 
+npm install @react-navigation/native-stack
 ===============================================
 
 
@@ -9,4 +12,5 @@ In react navigation, we have three types of Navigators.
 1. Stack Navigator => For taking the user from one screen to another.
 2. Tab Navigator => For implementing tab.
 3. Drawer Navigator => For implementing drawer that we can pull from left side of the screen.
- 
+
+=================================================================================

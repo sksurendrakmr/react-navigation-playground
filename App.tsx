@@ -1,115 +1,62 @@
+import {StyleSheet, Text, View} from 'react-native';
+import Screen from './src/component/Screen';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {NavigationContainer} from '@react-navigation/native';
+
+const Tweets = () => (
+  <Screen>
+    <Text>Tweets</Text>
+  </Screen>
+);
+
+const TweetDetails = () => (
+  <Screen>
+    <Text>Tweet Details</Text>
+  </Screen>
+);
+
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
+ * createNativeStackNavigator is a function which returns
+ * an object.
  *
- * Generated with the TypeScript template
- * https://github.com/react-native-community/react-native-template-typescript
+ * The return object has two properties :-
+ * 1. Navigator
+ * 2. Screen
+ * Both of it are react component.
  *
- * @format
+ * Within Screen component, we can define our routes.
+ * Screen component take two props
+ * 1. name -> name of the route. should be unique.
+ * 2. component -> component that should be rendered when we are in this route.
+ *
+ *StackNavigator component that we have defined knows how to navigate to different
+ *screen.
+ *
+ * Once we have Navigator (in our case StackNavigator), we need to wrap
+ * this inside a NavigationContainer.
+ *
+ * NavigationContainer component is defined in main library of react navigation.
+ *
+ * Since, The first route is Tweets so home page by default will be Tweets Screen.
+ * we can change that by setting a props called initialRouteName is Navigator component.
+ *
+ * By default, the header title of a screen will be the name of route name.
+ *
  */
+const Stack = createNativeStackNavigator();
 
-import React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-const Section: React.FC<{
-  title: string;
-}> = ({children, title}) => {
-  const isDarkMode = useColorScheme() === 'dark';
+const StackNavigator = () => (
+  <Stack.Navigator initialRouteName="Tweets">
+    <Stack.Screen name="Tweets" component={Tweets} />
+    <Stack.Screen name="TweetDetails" component={TweetDetails} />
+  </Stack.Navigator>
+);
+export default function App() {
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
+    <NavigationContainer>
+      <StackNavigator />
+    </NavigationContainer>
   );
-};
+}
 
-const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-};
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
-
-export default App;
+const styles = StyleSheet.create({});
