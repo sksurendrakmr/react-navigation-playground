@@ -30,3 +30,11 @@ The navigation props is only available for the component which is defined in the
 If we have a child component inside Tweet component then that child component will not 
 have the access of navigation props.
 But we can use navigation hook to get access of navigation object.
+
+================================================================
+Setting Screen Titles
+===============================
+As we have noticed, the title of the screen is based on the name of the route.
+What if we need to change the title??
+
+The Screen component has another props called options which is an object.
