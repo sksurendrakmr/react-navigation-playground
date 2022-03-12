@@ -38,3 +38,9 @@ As we have noticed, the title of the screen is based on the name of the route.
 What if we need to change the title??
 
 The Screen component has another props called options which is an object.
+
+What if we wanna set the title dynamically based on the data in the route parameters.
+In option props, we can either set it to an object or an function that return an object.
+
+and react navigation automatically inject the route paramater as an argument in option 
+function.

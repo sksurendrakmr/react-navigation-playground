@@ -5,7 +5,11 @@ import {
   createNativeStackNavigator,
   NativeStackScreenProps,
 } from '@react-navigation/native-stack';
-import {NavigationContainer, useNavigation} from '@react-navigation/native';
+import {
+  NavigationContainer,
+  StackRouterOptions,
+  useNavigation,
+} from '@react-navigation/native';
 
 type RootParamList = {
   TweetDetails: {id: number};
@@ -34,7 +38,6 @@ const Tweets = ({navigation}: Props) => (
       title="View Tweet"
       onPress={() => navigation.navigate('TweetDetails', {id: 1})}
     />
-    <Link />
   </Screen>
 );
 
@@ -91,7 +94,12 @@ const TweetDetails = ({route}: TweetDetailsProps) => (
  * By default, the header title of a screen will be the name of route name.
  *
  */
-const Stack = createNativeStackNavigator();
+
+type NativeStackNavigatorProps = {
+  Tweets: undefined;
+  TweetDetails: {id: string};
+};
+const Stack = createNativeStackNavigator<NativeStackNavigatorProps>();
 
 const StackNavigator = () => (
   <Stack.Navigator initialRouteName="Tweets">
@@ -99,7 +107,7 @@ const StackNavigator = () => (
     <Stack.Screen
       name="TweetDetails"
       component={TweetDetails}
-      options={{title: 'Tweet Details'}}
+      options={({route}) => ({title: route.params.id + ''})}
     />
   </Stack.Navigator>
 );
