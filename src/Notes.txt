@@ -14,3 +14,19 @@ In react navigation, we have three types of Navigators.
 3. Drawer Navigator => For implementing drawer that we can pull from left side of the screen.
 
 =================================================================================
+
+Navigating Between screens
+=========================
+Requirement : On click of view Tweet button, it will navigate to tweet details screen.
+
+React navigation gives our screen component a special prop called navigation.
+
+navigation.navigate() -> make sure that we have a single instance of a route/screen in our stack.
+We will have single instance of a screen in the stack.
+
+navigation.push() -> can have multiple instance of a screen in the stack.
+
+The navigation props is only available for the component which is defined in the <Stack.Screen> component.
+If we have a child component inside Tweet component then that child component will not 
+have the access of navigation props.
+But we can use navigation hook to get access of navigation object.

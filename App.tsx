@@ -1,11 +1,33 @@
-import {StyleSheet, Text, View} from 'react-native';
+import React from 'react';
+import {Button, StyleSheet, Text, View} from 'react-native';
 import Screen from './src/component/Screen';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {NavigationContainer} from '@react-navigation/native';
+import {
+  createNativeStackNavigator,
+  NativeStackScreenProps,
+} from '@react-navigation/native-stack';
+import {NavigationContainer, useNavigation} from '@react-navigation/native';
 
-const Tweets = () => (
+type RootParamList = {
+  TweetDetails: undefined;
+};
+type Props = NativeStackScreenProps<RootParamList, 'TweetDetails'>;
+
+//useNavigation hook
+const Link = () => {
+  const navigation = useNavigation<Props>();
+  return (
+    <Button title="Click" onPress={() => navigation.navigate('TweetDetails')} />
+  );
+};
+
+const Tweets = ({navigation}: Props) => (
   <Screen>
     <Text>Tweets</Text>
+    <Button
+      title="View Tweet"
+      onPress={() => navigation.navigate('TweetDetails')}
+    />
+    <Link />
   </Screen>
 );
 

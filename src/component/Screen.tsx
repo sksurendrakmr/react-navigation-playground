@@ -2,7 +2,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 
 type ScreenProps = {
-  children: JSX.Element;
+  children: React.ReactNode;
 };
 export default function Screen({children}: ScreenProps) {
   return <View style={styles.container}>{children}</View>;
